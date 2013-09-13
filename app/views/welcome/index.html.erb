@@ -1,20 +1,8 @@
-<script type="text/javascript">
-  function updateTemperature(feed) {
-      var temp;
-      temp = feed.datastreams[2].current_value;
-      var log = temp + " at " + feed.datastreams[2].at;
-      console.log(log);
-      $("#current-temperature").html(log);
-      feed = null;
-    }
-  function pollXively() {
-    var url = "<%= escape_javascript(@feed) %>";
-    jQuery.get(url, null, updateTemperature);
-  }
-
-  console.log("Setting interval to 5000.");
-  setInterval(pollXively, 5000); // Should be 15s eventually
-</script>
-
 <h2>Temperature</h2>
 <p>The temperature is <span id="current-temperature"><%= @temperature %><span></p>
+
+<script type="text/javascript">
+  xively.setKey("<%= @key %>");
+  $("#current-temperature").xively('live', { feed: <%= @id %>, datastream: 'temperature' });
+  // $("#current-temperature").xively('live', { feed: <%= @id %>, datastream: 'mbed' });
+</script>
