@@ -1,21 +1,25 @@
 require 'spec_helper'
 
 describe Mbed do
+  before(:each) do
+    @mbed = Mbed.new
+  end
+
   describe ".read" do
     it "doesn’t crash" do
-      Mbed.read
+      @mbed.read
     end
 
     it "returns a hash" do
-      Mbed.read.should be_a Hash
+      @mbed.read.should be_a Hash
     end
 
     it "does not raise" do
-      expect { Mbed.read }.to_not raise_error
+      expect { @mbed.read }.to_not raise_error
     end
 
     it "contains reading" do
-      Mbed.read['temperature']['current_value'].should_not be_nil
+      @mbed.read['temperature']['current_value'].should_not be_nil
     end
   end
 end
