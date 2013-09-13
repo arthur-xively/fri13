@@ -4,5 +4,4 @@
 <script type="text/javascript">
   xively.setKey("<%= @key %>");
   $("#current-temperature").xively('live', { feed: <%= @id %>, datastream: 'temperature' });
-  // $("#current-temperature").xively('live', { feed: <%= @id %>, datastream: 'mbed' });
 </script>

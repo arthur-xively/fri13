@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 
 class Mbed
-  attr_reader :id, :key, :feed
+  attr_reader :id, :key
 
   def initialize
     credentials = YAML.load(File.read(File.expand_path('../../config/credentials.yml', __FILE__)))
