@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 
 class Mbed
-  def self.read
+  def read
     credentials = YAML.load(File.read(File.expand_path('../../config/credentials.yml', __FILE__)))
     id = credentials['id']
     key = credentials['key']
