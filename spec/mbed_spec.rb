@@ -10,9 +10,8 @@ describe Mbed do
       Mbed.read.should be_a Hash
     end
 
-    it "does contains “Unauthorized” in the hash" do
-      response = Mbed.read
-      response['title'].should_not == "Unauthorized"
+    it "does not raise" do
+      expect { Mbed.read }.to_not raise_error
     end
   end
 end
