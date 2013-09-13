@@ -5,10 +5,13 @@ require 'json'
 class Mbed
   attr_reader :id, :key
 
-  def read
+  def initialize
     credentials = YAML.load(File.read(File.expand_path('../../config/credentials.yml', __FILE__)))
     @id = credentials['id']
     @key = credentials['key']
+  end
+
+  def read
     # TODO HTTPS (Net::HTTP protests about certificate)
     uri = URI("http://api.xively.com/v2/feeds/#{@id}?key=#{@key}")
     resp = Net::HTTP.get_response(uri)
