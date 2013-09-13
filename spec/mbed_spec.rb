@@ -13,5 +13,9 @@ describe Mbed do
     it "does not raise" do
       expect { Mbed.read }.to_not raise_error
     end
+
+    it "contains reading" do
+      Mbed.read['temperature']['current_value'].should_not be_nil
+    end
   end
 end

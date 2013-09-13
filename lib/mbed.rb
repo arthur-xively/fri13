@@ -11,6 +11,12 @@ class Mbed
     uri = URI("http://api.xively.com/v2/feeds/#{id}?key=#{key}")
     resp = Net::HTTP.get_response(uri)
     raise unless resp.code == '200' # Could be 403
-    JSON.parse(resp.body)
+    feed = JSON.parse(resp.body)
+    streams = { }
+    feed['datastreams'].each do |stream|
+      streams[stream['id']] = stream
+    end
+
+    streams
   end
 end
